@@ -28,13 +28,38 @@ function displayPlaceInfo(place){
 }
 
 $(document).ready(function(){
+
+// adds click functionality to the add landmarks button
+  $("#new-landmark").click(function(){
+    $("#places-input input[name=landmarks]:last-of-type").after('<input type="text" class="form-control" name="landmarks">'); //.after() will put the new landmark after the last one
+  });
+
+// adds click functionality to the add notes button
+  $("#new-note").click(function() {
+    $("#places-input input[name=notes]:last-of-type").after('<input type="text" class="form-control" name="notes">'); //.after() will put the new notes after the last one
+  });
+
   $("form#places-input").submit(function(event){
     event.preventDefault();
-    var name = $("#name-of-place").val();
-    var location = $("#location-of-place").val();
+    var name = $("#name-of-place").val(); //variable to store the value of name
+    var location = $("#location-of-place").val(); //variable to store the value of location
 
-    var place2 = new Place(name, location);
-    displayPlaceInfo(place2);
+    var newPlace = new Place(name, location); // new instance of Place Object
+
+    // function to loop over the landmarks input in the form
+    $("#places-input input[name=landmarks]").each(function () {
+      var newLandmark = $(this).val(); // //variable to store the value of landmarks
+      newPlace.landmarks.push(newLandmark); // pushes each value of landmark into the landmarks array
     });
-  //displayPlaceInfo(losAngeles); //calls the losAngeles object
+
+    // function to loop over the notes input in the form
+    $("#places-input input[name=notes]").each(function () {
+      var newNote = $(this).val(); // //variable to store the value of notes
+      newPlace.notes.push(newNote); // pushes each value of note into the notes array
+    });
+
+    // displayPlaceInfo(place);
+    displayPlaceInfo(newPlace); //calls the newPlace object
+    $("#places-input").hide(); // hides the form once the ser clicks the submit button
+    });
 });
