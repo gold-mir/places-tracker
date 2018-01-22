@@ -4,7 +4,7 @@
 > A webpage that allows it's user to input places they've been and lists those places along with notes about them.
 
 ### Setup Instructions
-  * See it on GitHub Pages [here](#);
+  * See it on GitHub Pages [here](https://gold-mir.github.io/places-tracker);
   * Alternatively, run `git clone repourl` and open index.html in your browser;
 
 ### Specifications
