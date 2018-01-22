@@ -29,6 +29,8 @@ function displayPlaceInfo(place){
 
 $(document).ready(function(){
 
+  var placesList = [];
+
 // adds click functionality to the add landmarks button
   $("#new-landmark").click(function(){
     $("#places-input input[name=landmarks]:last-of-type").after('<input type="text" class="form-control" name="landmarks">'); //.after() will put the new landmark after the last one
@@ -44,22 +46,32 @@ $(document).ready(function(){
     var name = $("#name-of-place").val(); //variable to store the value of name
     var location = $("#location-of-place").val(); //variable to store the value of location
 
+    $("#name-of-place").val("");
+    $("#location-of-place").val("");
+
     var newPlace = new Place(name, location); // new instance of Place Object
+    placesList.push(newPlace);
 
     // function to loop over the landmarks input in the form
     $("#places-input input[name=landmarks]").each(function () {
       var newLandmark = $(this).val(); // //variable to store the value of landmarks
+      $(this).val("");
       newPlace.landmarks.push(newLandmark); // pushes each value of landmark into the landmarks array
     });
 
     // function to loop over the notes input in the form
     $("#places-input input[name=notes]").each(function () {
       var newNote = $(this).val(); // //variable to store the value of notes
+      $(this).val("");
       newPlace.notes.push(newNote); // pushes each value of note into the notes array
     });
 
     // displayPlaceInfo(place);
-    displayPlaceInfo(newPlace); //calls the newPlace object
-    $("#places-input").hide(); // hides the form once the ser clicks the submit button
+    // displayPlaceInfo(newPlace); //calls the newPlace object
+    $("#places-list ul").append("<li><span class='place-list-item'>" + newPlace.name + "</span></li>");
+
+    $("#places-list ul > li:last-child").click(function(){
+      displayPlaceInfo(newPlace);
     });
+  });
 });

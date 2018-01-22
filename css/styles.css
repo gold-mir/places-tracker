@@ -1,3 +1,19 @@
 .place-display {
   display: none;
 }
+
+.place-list-item {
+  color: blue;
+}
+
+.place-list-item:hover {
+  cursor: pointer;
+}
+
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  text-align: center;
+}
